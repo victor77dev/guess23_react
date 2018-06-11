@@ -1,10 +1,8 @@
 {
-  "name": "react-boilerplate",
-  "version": "3.5.0",
-  "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
+  "name": "guess23_react",
+  "version": "1.0.0",
+  "description": "Guess 2/3 client",
   "repository": {
-    "type": "git",
-    "url": "git://github.com/react-boilerplate/react-boilerplate.git"
   },
   "engines": {
     "npm": ">=3",
