@@ -12,18 +12,77 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
+import { MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 
 import HomePage from 'containers/HomePage/Loadable';
+import LoginPage from 'containers/LoginPage/Loadable';
+import LogoutPage from 'containers/LogoutPage';
+import RegisterPage from 'containers/RegisterPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
+import FrameTheme from 'themes/FrameUI';
+import DefaultTheme from 'themes/DefaultUI';
 
-export default function App() {
+import Grid from '@material-ui/core/Grid';
+
+const styles = {
+  wrapper: {
+    height: '100vh',
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+  },
+  dummy: {
+    flexGrow: 1,
+  },
+  mainApp: {
+    maxWidth: 'calc(768px + 16px * 2)',
+    flexGrow: 3,
+    margin: '0 auto',
+    padding: '0 16px',
+    display: 'block',
+    paddingTop: 68,
+  },
+};
+
+const App = (props) => {
+  const { classes } = props;
   return (
-    <div>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route component={NotFoundPage} />
-      </Switch>
+    <div className={classes.wrapper}>
+      <Helmet
+        titleTemplate="%s - Guess 2/3"
+        defaultTitle="Guess 2/3"
+      >
+        <meta name="description" content="Guess 2/3 - Guess 2/3 of average" />
+      </Helmet>
+      <div className={classes.dummy}> </div>
+      <MuiThemeProvider theme={FrameTheme}>
+        <Route component={Header} />
+      </MuiThemeProvider>
+      <MuiThemeProvider theme={DefaultTheme}>
+        <Grid container justify="center" className={classes.mainApp}>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/register" component={RegisterPage} />
+            <Route exact path="/logout" component={LogoutPage} />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </Grid>
+      </MuiThemeProvider>
+      <MuiThemeProvider theme={FrameTheme}>
+        <Route component={Footer} />
+      </MuiThemeProvider>
     </div>
   );
-}
+};
+
+App.propTypes = {
+  classes: PropTypes.object,
+};
+
+export default withStyles(styles)(App);
