@@ -21,6 +21,8 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 
+import Grid from '@material-ui/core/Grid';
+
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
   margin: 0 auto;
@@ -29,6 +31,15 @@ const AppWrapper = styled.div`
   padding: 0 16px;
   flex-direction: column;
 `;
+
+const styles = {
+  mainApp: {
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    display: 'block',
+    paddingTop: 68,
+  },
+};
 
 export default function App() {
   return (
@@ -39,12 +50,14 @@ export default function App() {
       >
         <meta name="description" content="Guess 2/3 - Guess 2/3 of average" />
       </Helmet>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route component={NotFoundPage} />
-      </Switch>
-      <Footer />
+      <Route component={Header} />
+      <Grid container justify="center" style={styles.mainApp}>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </Grid>
+      <Route component={Footer} />
     </AppWrapper>
   );
 }
