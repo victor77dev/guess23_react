@@ -11,11 +11,11 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import SnackbarContent from '@material-ui/core/SnackbarContent';
 import { withStyles } from '@material-ui/core/styles';
 import grey from '@material-ui/core/colors/grey';
 
 import { Field } from 'redux-form/immutable';
+import InlineAlert from 'components/InlineAlert';
 
 const styles = (theme) => ({
   container: {
@@ -52,7 +52,7 @@ const RenderField = ({ input, label, type, meta: { touched, error }, classes }) 
   <div>
     <Typography variant="headline" component="h4" className={classes.textLef}>{label}</Typography>
     <TextField {...input} placeholder={label} type={type} className={classes.textLef} />
-    {touched && error && <span>{error}</span>}
+    {touched && error && <InlineAlert message={error} variant="error" />}
   </div>
 );
 
@@ -72,27 +72,9 @@ class Login extends React.PureComponent { // eslint-disable-line react/prefer-st
     return (
       <Grid container justify="center" className={classes.container}>
         <Typography variant="display1" component="h3" className={classes.textCen}>Please Login</Typography>
-        {msg && <div className="alert alert-success">{msg}</div>}
-        {errorMsg &&
-          <SnackbarContent
-            aria-describedby="client-snackbar"
-            message={
-              <span id="client-snackbar" className={classes.message}>
-                {errorMsg}
-              </span>
-            }
-          />
-        }
-        {error &&
-          <SnackbarContent
-            aria-describedby="client-snackbar"
-            message={
-              <span id="client-snackbar" className={classes.message}>
-                {error}
-              </span>
-            }
-          />
-        }
+        {msg && <InlineAlert message={msg} variant="success" />}
+        {errorMsg && <InlineAlert message={errorMsg} variant="error" />}
+        {error && <InlineAlert message={error} variant="error" />}
         <form onSubmit={handleSubmit(loginSubmit)}>
           <Field
             name="username"
