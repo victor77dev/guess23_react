@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { takeLatest, call, put } from 'redux-saga/effects';
+import config from 'config/config.json';
 import { loading, logined, getError } from './actions';
 import { FETCH_USER_DATA } from './constants';
 
-const apiUrl = 'http://localhost:8000';
+const apiUrl = config.server.basePath;
 
 export function* fetchUserData() {
   yield put(loading());

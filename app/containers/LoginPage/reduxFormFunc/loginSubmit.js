@@ -2,7 +2,8 @@ import { SubmissionError } from 'redux-form/immutable';
 import axios from 'axios';
 import { loading } from 'containers/LoginPage/actions';
 
-const apiUrl = 'http://localhost:8000';
+import config from 'config/config.json';
+const apiUrl = config.server.basePath;
 
 function loginSubmit(values, dispatch, props) {
   return axios.post(`${apiUrl}/api/v1/rest-auth/login/`, values)
