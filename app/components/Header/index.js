@@ -61,11 +61,18 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
   }
 
   goToHome = this.goToPath.bind(this, '/');
+  goToLogin = this.goToPath.bind(this, '/login');
+  goToRegister = this.goToPath.bind(this, '/register');
 
   addButtons = (list) => {
+    const buttonOnClickList = {
+      Home: this.goToHome,
+      Login: this.goToLogin,
+      Register: this.goToRegister,
+    };
     const buttonList = list.map((button) => {
-      if (button === 'Home') {
-        return <MenuItem key="Home" onClick={this.goToHome}>Home</MenuItem>;
+      if (button in buttonOnClickList) {
+        return <MenuItem key={button} onClick={buttonOnClickList[button]}>{button}</MenuItem>;
       }
       return <MenuItem key={button} onClick={() => { console.log(button); this.handleMenuClose(); }}>{button}</MenuItem>;
     });
@@ -75,7 +82,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
   render() {
     const { anchorEl } = this.state;
     const { classes } = this.props;
-    const buttons = ['Home', 'About'];
+    const buttons = ['Home', 'About', 'Login', 'Register'];
     return (
       <MuiThemeProvider theme={theme}>
         <AppBar>
