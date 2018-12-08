@@ -48,12 +48,15 @@ const styles = (theme) => ({
     marginLeft: 'auto',
   },
   textFieldDiv: {
+    display: 'flex',
   },
   textField: {
+    flex: 3,
     margin: theme.spacing.unit,
     width: '100%',
   },
   alert: {
+    flex: 1,
   },
   progress: {
     margin: theme.spacing.unit * 2,
