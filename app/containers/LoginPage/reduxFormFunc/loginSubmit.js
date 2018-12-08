@@ -1,11 +1,13 @@
 import { SubmissionError } from 'redux-form/immutable';
 import axios from 'axios';
 import { loading } from 'containers/LoginPage/actions';
+import { registered } from 'containers/RegisterPage/actions';
 
 import config from 'config/config.json';
 const apiUrl = config.server.basePath;
 
 function loginSubmit(values, dispatch, props) {
+  dispatch(registered(''));
   return axios.post(`${apiUrl}/api/v1/rest-auth/login/`, values)
     .then((response) => {
       const { data } = response;

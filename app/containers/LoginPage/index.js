@@ -15,6 +15,7 @@ import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import Login from 'components/Login';
 import registerReducer from 'containers/RegisterPage/reducer';
+import { makeSelectRegisterMsg } from 'containers/RegisterPage/selectors';
 import { makeSelectErrorMsg, makeSelectLogin, makeSelectLoading } from './selectors';
 import { fetchUserData } from './actions';
 import loginReducer from './reducer';
@@ -53,6 +54,7 @@ LoginPage.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
+  msg: makeSelectRegisterMsg(),
   errorMsg: makeSelectErrorMsg(),
   login: makeSelectLogin(),
   loading: makeSelectLoading(),

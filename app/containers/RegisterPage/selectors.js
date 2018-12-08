@@ -14,12 +14,12 @@ const selectRegisterPageDomain = (state) => state.get('registerPage');
  * Default selector used by RegisterPage
  */
 
-const makeSelectRegisterPage = () => createSelector(
+const makeSelectRegisterMsg = () => createSelector(
   selectRegisterPageDomain,
-  (substate) => substate.toJS()
+  (registerState) => registerState.get('msg')
 );
 
-export default makeSelectRegisterPage;
 export {
   selectRegisterPageDomain,
+  makeSelectRegisterMsg,
 };
