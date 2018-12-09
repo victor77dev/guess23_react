@@ -63,12 +63,14 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
   goToHome = this.goToPath.bind(this, '/');
   goToLogin = this.goToPath.bind(this, '/login');
   goToRegister = this.goToPath.bind(this, '/register');
+  goToLogout = this.goToPath.bind(this, '/logout');
 
   addButtons = (list) => {
     const buttonOnClickList = {
       Home: this.goToHome,
       Login: this.goToLogin,
       Register: this.goToRegister,
+      Logout: this.goToLogout,
     };
     const buttonList = list.map((button) => {
       if (button in buttonOnClickList) {
@@ -82,7 +84,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
   render() {
     const { anchorEl } = this.state;
     const { classes } = this.props;
-    const buttons = ['Home', 'About', 'Login', 'Register'];
+    const buttons = ['Home', 'About', 'Login', 'Register', 'Logout'];
     return (
       <MuiThemeProvider theme={theme}>
         <AppBar>

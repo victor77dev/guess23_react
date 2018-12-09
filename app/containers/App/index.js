@@ -18,6 +18,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
+import LogoutPage from 'containers/LogoutPage';
 import RegisterPage from 'containers/RegisterPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
@@ -58,6 +59,7 @@ export default function App() {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/register" component={RegisterPage} />
+          <Route exact path="/logout" component={LogoutPage} />
           <Route component={NotFoundPage} />
         </Switch>
       </Grid>
