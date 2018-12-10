@@ -14,7 +14,6 @@ import { reduxForm, reducer as formReducer } from 'redux-form/immutable';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import Register from 'components/Register';
-import { fetchUserData } from 'containers/LoginPage/actions';
 import { makeSelectLogin, makeSelectLoading } from 'containers/LoginPage/selectors';
 import loginReducer from 'containers/LoginPage/reducer';
 import loginSaga from 'containers/LoginPage/saga';
@@ -24,10 +23,6 @@ import registerValidate from './reduxFormFunc/registerValidate';
 import registerAsyncValidate from './reduxFormFunc/registerAsyncValidate';
 
 export class RegisterPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  componentDidMount() {
-    this.props.fetchUserData();
-  }
-
   componentDidUpdate() {
     if (!this.props.loading && this.props.login) {
       this.props.history.push('/');
@@ -43,7 +38,6 @@ export class RegisterPage extends React.PureComponent { // eslint-disable-line r
 }
 
 RegisterPage.propTypes = {
-  fetchUserData: PropTypes.func,
   loading: PropTypes.bool,
   login: PropTypes.bool,
   history: PropTypes.object,
@@ -57,11 +51,8 @@ const mapStateToProps = createStructuredSelector({
   loading: makeSelectLoading(),
 });
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps() {
   return {
-    fetchUserData: () => {
-      dispatch(fetchUserData());
-    },
   };
 }
 

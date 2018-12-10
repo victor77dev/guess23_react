@@ -17,16 +17,11 @@ import Login from 'components/Login';
 import registerReducer from 'containers/RegisterPage/reducer';
 import { makeSelectRegisterMsg } from 'containers/RegisterPage/selectors';
 import { makeSelectErrorMsg, makeSelectLogin, makeSelectLoading } from './selectors';
-import { fetchUserData } from './actions';
 import loginReducer from './reducer';
 import saga from './saga';
 import loginSubmit from './reduxFormFunc/loginSubmit';
 
 export class LoginPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  componentDidMount() {
-    this.props.fetchUserData();
-  }
-
   componentDidUpdate() {
     if (!this.props.loading && this.props.login) {
       this.props.history.push('/');
@@ -42,7 +37,6 @@ export class LoginPage extends React.PureComponent { // eslint-disable-line reac
 }
 
 LoginPage.propTypes = {
-  fetchUserData: PropTypes.func,
   loading: PropTypes.bool,
   login: PropTypes.bool,
   errorMsg: PropTypes.string,
@@ -60,11 +54,8 @@ const mapStateToProps = createStructuredSelector({
   loading: makeSelectLoading(),
 });
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps() {
   return {
-    fetchUserData: () => {
-      dispatch(fetchUserData());
-    },
   };
 }
 

@@ -13,23 +13,22 @@ import { compose } from 'redux';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import Logout from 'components/Logout';
-import { fetchUserData, logouted } from 'containers/LoginPage/actions';
+import { logouted } from 'containers/LoginPage/actions';
 import makeSelectLogoutPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
 export class LogoutPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { history, fetchUserDataAction, logoutedAction } = this.props;
+    const { history, logoutedAction } = this.props;
     return (
-      <Logout history={history} fetchUserData={fetchUserDataAction} logouted={logoutedAction} />
+      <Logout history={history} logouted={logoutedAction} />
     );
   }
 }
 
 LogoutPage.propTypes = {
   history: PropTypes.object.isRequired,
-  fetchUserDataAction: PropTypes.func,
   logoutedAction: PropTypes.func,
 };
 
@@ -39,9 +38,6 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchUserDataAction: () => {
-      dispatch(fetchUserData());
-    },
     logoutedAction: () => {
       dispatch(logouted());
     },
