@@ -12,6 +12,6 @@ export default defineMessages({
   },
   redirect: {
     id: 'app.components.Logout.redirect',
-    defaultMessage: 'You will be redirected to Home in 5s...',
+    defaultMessage: 'You will be redirected to Home...',
   },
 });

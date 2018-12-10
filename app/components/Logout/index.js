@@ -40,7 +40,7 @@ class Logout extends React.PureComponent { // eslint-disable-line react/prefer-s
         logouted();
         setTimeout(() => {
           history.push('/');
-        }, 5000);
+        }, 1000);
       })
       .catch((err) => {
         throw err;
