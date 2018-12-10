@@ -7,8 +7,15 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import HomeIcon from '@material-ui/icons/Home';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import InfoIcon from '@material-ui/icons/Info';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 import grey from '@material-ui/core/colors/grey';
 import blueGrey from '@material-ui/core/colors/blueGrey';
 import ProfileBarContainer from 'containers/ProfileBarContainer';
@@ -43,20 +50,27 @@ const styles = {
   title: {
     flexGrow: 1,
   },
+  list: {
+    width: 250,
+  },
 };
 
 
 class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
   state = {
-    anchorEl: null,
+    open: false,
   };
 
-  handleMenuClick = (event) => {
-    this.setState({ anchorEl: event.currentTarget });
+  handleMenuClick = () => {
+    this.setState({ open: true });
   };
 
   handleMenuClose = () => {
-    this.setState({ anchorEl: null });
+    this.setState({ open: false });
+  };
+
+  handleMenuOpen = () => {
+    this.setState({ open: true });
   };
 
   goToPath = (path) => {
@@ -68,23 +82,45 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
   goToRegister = this.goToPath.bind(this, '/register');
 
   addButtons = (list) => {
-    const buttonOnClickList = {
-      Home: this.goToHome,
-      Register: this.goToRegister,
+    const buttonFuncIconList = {
+      Home: {
+        onClick: this.goToHome,
+        icon: <HomeIcon />,
+      },
+      Register: {
+        onClick: this.goToRegister,
+        icon: <PersonAddIcon />,
+      },
+      About: {
+        onClick: this.handleMenuClose,
+        icon: <InfoIcon />,
+      },
     };
     const buttonList = list.map((button) => {
-      if (button in buttonOnClickList) {
-        return <MenuItem key={button} onClick={buttonOnClickList[button]}>{button}</MenuItem>;
+      if (button === '---divider---') {
+        return <Divider key={button} />;
       }
-      return <MenuItem key={button} onClick={() => { console.log(button); this.handleMenuClose(); }}>{button}</MenuItem>;
+      if (button in buttonFuncIconList) {
+        return (
+          <ListItem button key={button} onClick={buttonFuncIconList[button].onClick}>
+            {buttonFuncIconList[button].icon &&
+              <ListItemIcon>
+                {buttonFuncIconList[button].icon}
+              </ListItemIcon>
+            }
+            <ListItemText primary={button} />
+          </ListItem>
+        );
+      }
+      return <ListItem button key={button} onClick={() => { this.handleMenuClose(); }}>{button}</ListItem>;
     });
     return buttonList;
   }
 
   render() {
-    const { anchorEl } = this.state;
+    const { open } = this.state;
     const { classes } = this.props;
-    const buttons = ['Home', 'Register', 'About'];
+    const buttons = ['Home', 'Register', '---divider---', 'About'];
     return (
       <MuiThemeProvider theme={theme}>
         <AppBar>
@@ -98,14 +134,17 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
             >
               <MenuIcon />
             </IconButton>
-            <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
+            <SwipeableDrawer
+              anchor="left"
+              open={open}
               onClose={this.handleMenuClose}
+              onOpen={this.handleMenuOpen}
               className={classes.menu}
             >
-              {this.addButtons(buttons)}
-            </Menu>
+              <List className={classes.list}>
+                {this.addButtons(buttons)}
+              </List>
+            </SwipeableDrawer>
             <Typography variant="title" color="inherit" className={classes.title} onClick={this.goToHome}>
               Guess 2/3
             </Typography>
