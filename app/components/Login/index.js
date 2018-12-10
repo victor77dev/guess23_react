@@ -51,7 +51,7 @@ const styles = (theme) => ({
 const RenderField = ({ input, label, type, meta: { touched, error }, classes }) => (
   <div>
     <Typography variant="headline" component="h4" className={classes.textLef}>{label}</Typography>
-    <TextField {...input} placeholder={label} type={type} className={classes.textLef} />
+    <TextField {...input} placeholder={label} type={type} className={classes.textLef} autoFocus={label === 'Username'} />
     {touched && error && <InlineAlert message={error} variant="error" />}
   </div>
 );

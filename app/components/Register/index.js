@@ -69,6 +69,7 @@ const RenderField = ({ input, label, type, meta: { touched, error, asyncValidati
     <div className={classes.textFieldDiv}>
       <TextField
         {...input}
+        // autoFocus={label === 'Email'}
         placeholder={label}
         type={type}
         className={classes.textField}
