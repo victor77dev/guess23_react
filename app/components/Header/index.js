@@ -11,6 +11,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import grey from '@material-ui/core/colors/grey';
 import blueGrey from '@material-ui/core/colors/blueGrey';
+import ProfileBarContainer from 'containers/ProfileBarContainer';
 
 // Creating theme with following colors
 // https://material.io/tools/color/#!/?view.left=0&view.right=0&secondary.color=455A64&primary.color=212121
@@ -38,6 +39,9 @@ const styles = {
   },
   menu: {
     top: 38,
+  },
+  title: {
+    flexGrow: 1,
   },
 };
 
@@ -106,9 +110,10 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
             >
               {this.addButtons(buttons)}
             </Menu>
-            <Typography variant="title" color="inherit" onClick={this.goToHome}>
+            <Typography variant="title" color="inherit" className={classes.title} onClick={this.goToHome}>
               Guess 2/3
             </Typography>
+            <ProfileBarContainer goToPath={this.goToPath} />
           </Toolbar>
         </AppBar>
       </MuiThemeProvider>
