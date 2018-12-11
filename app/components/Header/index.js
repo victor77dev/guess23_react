@@ -47,7 +47,7 @@ const styles = {
   menu: {
     top: 38,
   },
-  title: {
+  dummy: {
     flexGrow: 1,
   },
   list: {
@@ -145,9 +145,10 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
                 {this.addButtons(buttons)}
               </List>
             </SwipeableDrawer>
-            <Typography variant="title" color="inherit" className={classes.title} onClick={this.goToHome}>
+            <Typography variant="title" color="inherit" onClick={this.goToHome}>
               Guess 2/3
             </Typography>
+            <div className={classes.dummy}></div>
             <ProfileBarContainer goToPath={this.goToPath} />
           </Toolbar>
         </AppBar>
