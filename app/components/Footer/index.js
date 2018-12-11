@@ -1,22 +1,50 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-import Wrapper from './Wrapper';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import theme from 'themes/FrameUI';
 import messages from './messages';
 
-function Footer() {
+const styles = {
+  footer: {
+    width: '100%',
+    flexGrow: 1,
+    backgroundColor: theme.palette.secondary.light,
+    display: 'flex',
+    flexDirection: 'column-reverse',
+  },
+  text: {
+    bottom: 0,
+    position: 'relative',
+    textAlign: 'right',
+    margin: theme.spacing.unit,
+    color: theme.palette.secondary.dark,
+  },
+  link: {
+    color: theme.palette.primary.light,
+    textDecoration: 'none',
+  },
+};
+
+const Footer = (props) => {
+  const { classes } = props;
   return (
-    <Wrapper>
-      <section>
+    <footer className={classes.footer}>
+      <Typography variant="title" color="inherit" className={classes.text}>
         <FormattedMessage
           {...messages.authorMessage}
           values={{
-            author: <a href="https://victor77dev.github.io">Victor</a>,
+            author: <a href="https://victor77dev.github.io" className={classes.link}>Victor</a>,
           }}
         />
-      </section>
-    </Wrapper>
+      </Typography>
+    </footer>
   );
-}
+};
 
-export default Footer;
+Footer.propTypes = {
+  classes: PropTypes.object,
+};
+export default withStyles(styles)(Footer);
