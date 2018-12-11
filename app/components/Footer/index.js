@@ -4,10 +4,9 @@ import { FormattedMessage } from 'react-intl';
 
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import theme from 'themes/FrameUI';
 import messages from './messages';
 
-const styles = {
+const styles = (theme) => ({
   footer: {
     width: '100%',
     flexGrow: 1,
@@ -26,7 +25,7 @@ const styles = {
     color: theme.palette.primary.light,
     textDecoration: 'none',
   },
-};
+});
 
 const Footer = (props) => {
   const { classes } = props;
@@ -47,4 +46,5 @@ const Footer = (props) => {
 Footer.propTypes = {
   classes: PropTypes.object,
 };
+
 export default withStyles(styles)(Footer);

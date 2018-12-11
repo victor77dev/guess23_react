@@ -15,7 +15,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles';
+import { MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 
 import HomePage from 'containers/HomePage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
@@ -24,6 +24,7 @@ import RegisterPage from 'containers/RegisterPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import theme from 'themes/FrameUI';
 
 import Grid from '@material-ui/core/Grid';
 
@@ -58,7 +59,9 @@ const App = (props) => {
         <meta name="description" content="Guess 2/3 - Guess 2/3 of average" />
       </Helmet>
       <div className={classes.dummy}> </div>
-      <Route component={Header} />
+      <MuiThemeProvider theme={theme}>
+        <Route component={Header} />
+      </MuiThemeProvider>
       <Grid container justify="center" className={classes.mainApp}>
         <Switch>
           <Route exact path="/" component={HomePage} />
@@ -68,6 +71,9 @@ const App = (props) => {
           <Route component={NotFoundPage} />
         </Switch>
       </Grid>
+      <MuiThemeProvider theme={theme}>
+        <Route component={Footer} />
+      </MuiThemeProvider>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PropTypes from 'prop-types';
-import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -16,28 +16,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-import grey from '@material-ui/core/colors/grey';
-import blueGrey from '@material-ui/core/colors/blueGrey';
 import ProfileBarContainer from 'containers/ProfileBarContainer';
-
-// Creating theme with following colors
-// https://material.io/tools/color/#!/?view.left=0&view.right=0&secondary.color=455A64&primary.color=212121
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: '#484848',
-      main: grey[900],
-      dark: '#000000',
-      contrastText: '#ffffff',
-    },
-    secondary: {
-      light: '#718792',
-      main: blueGrey[700],
-      dark: '#1c313a',
-      contrastText: '#ffffff',
-    },
-  },
-});
 
 const styles = {
   menuButton: {
@@ -122,37 +101,35 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
     const { classes } = this.props;
     const buttons = ['Home', 'Register', '---divider---', 'About'];
     return (
-      <MuiThemeProvider theme={theme}>
-        <AppBar>
-          <Toolbar>
-            <IconButton
-              onClick={this.handleMenuClick}
-              aria-haspopup="true"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Menu"
-            >
-              <MenuIcon />
-            </IconButton>
-            <SwipeableDrawer
-              anchor="left"
-              open={open}
-              onClose={this.handleMenuClose}
-              onOpen={this.handleMenuOpen}
-              className={classes.menu}
-            >
-              <List className={classes.list}>
-                {this.addButtons(buttons)}
-              </List>
-            </SwipeableDrawer>
-            <Typography variant="title" color="inherit" onClick={this.goToHome}>
-              Guess 2/3
-            </Typography>
-            <div className={classes.dummy}></div>
-            <ProfileBarContainer goToPath={this.goToPath} />
-          </Toolbar>
-        </AppBar>
-      </MuiThemeProvider>
+      <AppBar>
+        <Toolbar>
+          <IconButton
+            onClick={this.handleMenuClick}
+            aria-haspopup="true"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="Menu"
+          >
+            <MenuIcon />
+          </IconButton>
+          <SwipeableDrawer
+            anchor="left"
+            open={open}
+            onClose={this.handleMenuClose}
+            onOpen={this.handleMenuOpen}
+            className={classes.menu}
+          >
+            <List className={classes.list}>
+              {this.addButtons(buttons)}
+            </List>
+          </SwipeableDrawer>
+          <Typography variant="title" color="inherit" onClick={this.goToHome}>
+            Guess 2/3
+          </Typography>
+          <div className={classes.dummy}></div>
+          <ProfileBarContainer goToPath={this.goToPath} />
+        </Toolbar>
+      </AppBar>
     );
   }
 }
