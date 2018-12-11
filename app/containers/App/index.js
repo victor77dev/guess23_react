@@ -12,9 +12,10 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
 
 import HomePage from 'containers/HomePage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
@@ -26,35 +27,39 @@ import Footer from 'components/Footer';
 
 import Grid from '@material-ui/core/Grid';
 
-const AppWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
-  margin: 0 auto;
-  display: flex;
-  min-height: 100%;
-  padding: 0 16px;
-  flex-direction: column;
-`;
-
 const styles = {
+  wrapper: {
+    height: '100vh',
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+  },
+  dummy: {
+    flexGrow: 1,
+  },
   mainApp: {
-    marginRight: 'auto',
-    marginLeft: 'auto',
+    maxWidth: 'calc(768px + 16px * 2)',
+    flexGrow: 3,
+    margin: '0 auto',
+    padding: '0 16px',
     display: 'block',
     paddingTop: 68,
   },
 };
 
-export default function App() {
+const App = (props) => {
+  const { classes } = props;
   return (
-    <AppWrapper>
+    <div className={classes.wrapper}>
       <Helmet
         titleTemplate="%s - Guess 2/3"
         defaultTitle="Guess 2/3"
       >
         <meta name="description" content="Guess 2/3 - Guess 2/3 of average" />
       </Helmet>
+      <div className={classes.dummy}> </div>
       <Route component={Header} />
-      <Grid container justify="center" style={styles.mainApp}>
+      <Grid container justify="center" className={classes.mainApp}>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/login" component={LoginPage} />
@@ -63,7 +68,12 @@ export default function App() {
           <Route component={NotFoundPage} />
         </Switch>
       </Grid>
-      <Route component={Footer} />
-    </AppWrapper>
+    </div>
   );
-}
+};
+
+App.propTypes = {
+  classes: PropTypes.object,
+};
+
+export default withStyles(styles)(App);
