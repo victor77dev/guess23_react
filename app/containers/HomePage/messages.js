@@ -12,6 +12,6 @@ export default defineMessages({
   },
   content: {
     id: 'app.components.HomePage.content',
-    defaultMessage: 'Make a Guess for 2/3 of average!',
+    defaultMessage: 'Choose a Game Room and Make a Guess!',
   },
 });
