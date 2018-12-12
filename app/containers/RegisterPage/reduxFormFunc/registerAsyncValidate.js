@@ -19,6 +19,9 @@ const registerAsyncValidate = (values, dispatch) => {
           if (key !== '_error') {
             const { _error, ...others } = errsObj;
             tempObj = { [key]: err[key], ...others, ...tempObj };
+          } else if (errsObj._error.includes(err[key])) {
+            // Skip the repeat errors
+            tempObj = { _error: [...errsObj._error], ...tempObj };
           } else {
             tempObj = { _error: [...errsObj._error, err[key]], ...tempObj };
           }
@@ -39,13 +42,14 @@ const registerEmailValidate = (values) => {
     .then((response) => {
       const { data } = response;
       if (!data || !('email' in data)) {
-        throw new SubmissionError({ email: 'Server Error. Unable to check.', _error: 'Server Error!' });
+        return new SubmissionError({ email: 'Server Error. Unable to check.', _error: 'Server Error!' });
       } else if (data.email === checkEmail) {
-        throw new SubmissionError({ email: 'That email is already used', _error: 'Please use another email for registration.' });
+        return new SubmissionError({ email: 'That email is already used', _error: 'Please use another email for registration.' });
       }
+      return null;
     })
     .catch((err) => {
-      throw err;
+      throw new SubmissionError({ email: err.toString(), _error: 'Server Error!' });
     });
 };
 
@@ -55,13 +59,14 @@ const registerUsernameValidate = (values) => {
     .then((response) => {
       const { data } = response;
       if (!data || !('username' in data)) {
-        throw new SubmissionError({ username: 'Server Error. Unable to check.', _error: 'Server Error!' });
+        return new SubmissionError({ username: 'Server Error. Unable to check.', _error: 'Server Error!' });
       } else if (data.username === checkUsername) {
-        throw new SubmissionError({ username: 'That username is already used', _error: 'Please use another username for registration.' });
+        return new SubmissionError({ username: 'That username is already used', _error: 'Please use another username for registration.' });
       }
+      return null;
     })
     .catch((err) => {
-      throw err;
+      throw new SubmissionError({ username: err.toString(), _error: 'Server Error!' });
     });
 };
 
