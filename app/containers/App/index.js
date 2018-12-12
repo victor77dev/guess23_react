@@ -14,7 +14,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, HashRouter } from 'react-router-dom';
 import { MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 
 import HomePage from 'containers/HomePage/Loadable';
@@ -60,25 +60,29 @@ const App = (props) => {
       >
         <meta name="description" content="Guess 2/3 - Guess 2/3 of average" />
       </Helmet>
-      <div className={classes.dummy}> </div>
-      <MuiThemeProvider theme={FrameTheme}>
-        <Route component={Header} />
-      </MuiThemeProvider>
-      <MuiThemeProvider theme={DefaultTheme}>
-        <Grid container justify="center" className={classes.mainApp}>
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/login" component={LoginPage} />
-            <Route exact path="/register" component={RegisterPage} />
-            <Route exact path="/logout" component={LogoutPage} />
-            <Route exact path="/gameroom/:gameroomId" component={GameRoomPage} />
-            <Route component={NotFoundPage} />
-          </Switch>
-        </Grid>
-      </MuiThemeProvider>
-      <MuiThemeProvider theme={FrameTheme}>
-        <Route component={Footer} />
-      </MuiThemeProvider>
+      <HashRouter>
+        <div className={classes.wrapper}>
+          <div className={classes.dummy}> </div>
+          <MuiThemeProvider theme={FrameTheme}>
+            <Route component={Header} />
+          </MuiThemeProvider>
+          <MuiThemeProvider theme={DefaultTheme}>
+            <Grid container justify="center" className={classes.mainApp}>
+              <Switch>
+                <Route exact path="/" component={HomePage} />
+                <Route exact path="/login" component={LoginPage} />
+                <Route exact path="/register" component={RegisterPage} />
+                <Route exact path="/logout" component={LogoutPage} />
+                <Route exact path="/gameroom/:gameroomId" component={GameRoomPage} />
+                <Route component={NotFoundPage} />
+              </Switch>
+            </Grid>
+          </MuiThemeProvider>
+          <MuiThemeProvider theme={FrameTheme}>
+            <Route component={Footer} />
+          </MuiThemeProvider>
+        </div>
+      </HashRouter>
     </div>
   );
 };
