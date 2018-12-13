@@ -5,15 +5,15 @@
  */
 
 import {
-  FETCH_GAME_ROOM_DATA,
-  UPDATE_GAME_ROOM_DATA,
+  FETCH_GAME_ROOMS_LIST_DATA,
+  UPDATE_GAME_ROOMS_LIST_DATA,
   LOADING,
   ERROR,
 } from './constants';
 
-export function updateGameRoomData(gamerooms) {
+export function updateGameRoomsListData(gamerooms) {
   return {
-    type: UPDATE_GAME_ROOM_DATA,
+    type: UPDATE_GAME_ROOMS_LIST_DATA,
     payload: gamerooms,
   };
 }
@@ -31,8 +31,8 @@ export function getError(error) {
   };
 }
 
-export function fetchGameRoomData() {
+export function fetchGameRoomsListData() {
   return {
-    type: FETCH_GAME_ROOM_DATA,
+    type: FETCH_GAME_ROOMS_LIST_DATA,
   };
 }

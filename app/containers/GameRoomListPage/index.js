@@ -16,7 +16,7 @@ import injectReducer from 'utils/injectReducer';
 import GameRoomList from 'components/GameRoomList';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
-import { fetchGameRoomData } from './actions';
+import { fetchGameRoomsListData } from './actions';
 import { makeSelectGameRooms, makeSelectLoading } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -35,7 +35,7 @@ const styles = (theme) => ({
 
 export class GameRoomListPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   componentDidMount() {
-    this.props.fetchGameRoomDataAction();
+    this.props.fetchGameRoomsListDataAction();
   }
 
   render() {
@@ -56,7 +56,7 @@ export class GameRoomListPage extends React.PureComponent { // eslint-disable-li
 
 GameRoomListPage.propTypes = {
   classes: PropTypes.object.isRequired,
-  fetchGameRoomDataAction: PropTypes.func,
+  fetchGameRoomsListDataAction: PropTypes.func,
   goToPath: PropTypes.func,
   gamerooms: PropTypes.array,
   loading: PropTypes.bool,
@@ -69,8 +69,8 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchGameRoomDataAction: () => {
-      dispatch(fetchGameRoomData());
+    fetchGameRoomsListDataAction: () => {
+      dispatch(fetchGameRoomsListData());
     },
   };
 }

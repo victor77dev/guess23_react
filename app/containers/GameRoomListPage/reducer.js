@@ -6,7 +6,7 @@
 
 import { fromJS } from 'immutable';
 import {
-  UPDATE_GAME_ROOM_DATA,
+  UPDATE_GAME_ROOMS_LIST_DATA,
   LOADING,
   ERROR,
 } from './constants';
@@ -19,7 +19,7 @@ const initialState = fromJS({
 
 function gameRoomListPageReducer(state = initialState, action) {
   switch (action.type) {
-    case UPDATE_GAME_ROOM_DATA:
+    case UPDATE_GAME_ROOMS_LIST_DATA:
       return state
         .set('loading', false)
         .set('gamerooms', fromJS(action.payload));
