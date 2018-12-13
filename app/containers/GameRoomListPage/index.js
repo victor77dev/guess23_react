@@ -21,12 +21,15 @@ import { makeSelectGameRooms, makeSelectLoading } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-const styles = () => ({
+const styles = (theme) => ({
   div: {
     display: 'flex',
+    margin: theme.spacing.unit,
   },
   progress: {
     margin: 'auto',
+    marginTop: 5 * theme.spacing.unit,
+    marginBottom: 5 * theme.spacing.unit,
   },
 });
 
