@@ -24,15 +24,9 @@ export default function registerSubmit(values, dispatch, props) {
       if (err.response && err.response.data) {
         const { data } = err.response;
         formErrorMsg._error = [];
-        if (data.non_field_errors) {
-          formErrorMsg._error.push(data.non_field_errors);
-        }
-        if (data.username) {
-          formErrorMsg._error.push(data.username);
-        }
-        if (data.email) {
-          formErrorMsg._error.push(data.email);
-        }
+        Object.keys(data).forEach((key) => {
+          formErrorMsg._error.push(data[key]);
+        });
       }
       throw new SubmissionError(formErrorMsg);
     });
