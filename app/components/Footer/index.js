@@ -13,6 +13,7 @@ const styles = (theme) => ({
     backgroundColor: theme.palette.secondary.light,
     display: 'flex',
     flexDirection: 'column-reverse',
+    minHeight: 40,
   },
   text: {
     bottom: 0,
