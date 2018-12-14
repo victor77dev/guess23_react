@@ -25,7 +25,8 @@ import GameRoomPage from 'containers/GameRoomPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-import theme from 'themes/FrameUI';
+import FrameTheme from 'themes/FrameUI';
+import DefaultTheme from 'themes/DefaultUI';
 
 import Grid from '@material-ui/core/Grid';
 
@@ -60,20 +61,22 @@ const App = (props) => {
         <meta name="description" content="Guess 2/3 - Guess 2/3 of average" />
       </Helmet>
       <div className={classes.dummy}> </div>
-      <MuiThemeProvider theme={theme}>
+      <MuiThemeProvider theme={FrameTheme}>
         <Route component={Header} />
       </MuiThemeProvider>
-      <Grid container justify="center" className={classes.mainApp}>
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/register" component={RegisterPage} />
-          <Route exact path="/logout" component={LogoutPage} />
-          <Route exact path="/gameroom/:gameroomId" component={GameRoomPage} />
-          <Route component={NotFoundPage} />
-        </Switch>
-      </Grid>
-      <MuiThemeProvider theme={theme}>
+      <MuiThemeProvider theme={DefaultTheme}>
+        <Grid container justify="center" className={classes.mainApp}>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/register" component={RegisterPage} />
+            <Route exact path="/logout" component={LogoutPage} />
+            <Route exact path="/gameroom/:gameroomId" component={GameRoomPage} />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </Grid>
+      </MuiThemeProvider>
+      <MuiThemeProvider theme={FrameTheme}>
         <Route component={Footer} />
       </MuiThemeProvider>
     </div>
