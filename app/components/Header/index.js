@@ -124,7 +124,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
             </List>
           </SwipeableDrawer>
           <Typography variant="title" color="inherit" onClick={this.goToHome}>
-            Guess 2/3
+            BodyTime
           </Typography>
           <div className={classes.dummy}></div>
           <ProfileBarContainer goToPath={this.goToPath} />

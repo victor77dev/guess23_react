@@ -8,10 +8,10 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   header: {
     id: 'app.components.HomePage.header',
-    defaultMessage: 'Welcome to Guess 2/3!',
+    defaultMessage: 'Welcome to BodyTime!',
   },
   content: {
     id: 'app.components.HomePage.content',
-    defaultMessage: 'Make a Guess for 2/3 of average!',
+    defaultMessage: 'Connecting everyday life to the biological clock!',
   },
 });

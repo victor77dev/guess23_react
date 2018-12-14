@@ -9,7 +9,7 @@ export default defineMessages({
   authorMessage: {
     id: 'boilerplate.components.Footer.author.message',
     defaultMessage: `
-      Developed by {author}.
+      Provided by {author}.
     `,
   },
 });

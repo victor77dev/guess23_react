@@ -1,7 +1,7 @@
 {
-  "name": "guess23_react",
+  "name": "bodytime_web",
   "version": "1.0.0",
-  "description": "Guess 2/3 client",
+  "description": "BodyTime Web Client",
   "repository": {},
   "engines": {
     "npm": ">=3",
