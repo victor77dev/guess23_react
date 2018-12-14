@@ -36,7 +36,7 @@ const Footer = (props) => {
         <FormattedMessage
           {...messages.authorMessage}
           values={{
-            author: <a href="https://victor77dev.github.io" className={classes.link}>Victor</a>,
+            author: <a href="https://www.bodytime.health" className={classes.link}>BodyTime</a>,
           }}
         />
       </Typography>

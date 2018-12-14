@@ -54,10 +54,10 @@ const App = (props) => {
   return (
     <div className={classes.wrapper}>
       <Helmet
-        titleTemplate="%s - Guess 2/3"
-        defaultTitle="Guess 2/3"
+        titleTemplate="%s - BodyTime"
+        defaultTitle="BodyTime"
       >
-        <meta name="description" content="Guess 2/3 - Guess 2/3 of average" />
+        <meta name="description" content="BodyTime - Connecting everyday life to the biological clock." />
       </Helmet>
       <div className={classes.dummy}> </div>
       <MuiThemeProvider theme={FrameTheme}>

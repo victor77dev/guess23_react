@@ -1,7 +1,8 @@
-# Guess 2/3
-"Guess 2/3" is a famous game in game theory. [Guess 2/3 of the average](https://en.wikipedia.org/wiki/Guess_2/3_of_the_average)
+# BodyTime
+BodyTime - Connecting everyday life to the biological clock. [BodyTime](https://www.bodytime.health)
 
-We want to create more games as experiments for further analyzing the game.
-For example, the effect of different variations of game, what would be the result for Guess 1/3.
+BodyTime aims to help patients manage sleep using real world and genomic data insights.
+It can improve the quality of your sleep by showing you how your biological clock works.
 
-Especially, an interesting variation we would like to investigate is continuous version of this game.
+Our vision is to connect everyday life to your biological clock.
+Our goal is to help those suffering from clock-related sleep disorders to receive prompt and personalized treatment.
