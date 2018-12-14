@@ -21,6 +21,7 @@ import HomePage from 'containers/HomePage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
 import LogoutPage from 'containers/LogoutPage';
 import RegisterPage from 'containers/RegisterPage/Loadable';
+import GameRoomPage from 'containers/GameRoomPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
@@ -68,6 +69,7 @@ const App = (props) => {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/register" component={RegisterPage} />
           <Route exact path="/logout" component={LogoutPage} />
+          <Route exact path="/gameroom/:gameroomId" component={GameRoomPage} />
           <Route component={NotFoundPage} />
         </Switch>
       </Grid>
